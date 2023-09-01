@@ -1,10 +1,18 @@
+<?php
+    include 'php/server.php';
+
+    if (isset($_SESSION['id'])) {
+        header('location: index.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ผลการเรียนนักเรียนไม่ผ่านเกณฑ์</title>
+    <title>เข้าสู่ระบบ | ผลการเรียนนักเรียนไม่ผ่านเกณฑ์</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,6 +26,9 @@
             <div class="col-10 col-sm-10 col-md-8">
                 <div class="row my-3 fs-3">
                     <center>
+                        <div class="my-2">
+                            <img src="img/login.png" height="94px" width="94px">
+                        </div>
                         เข้าสู่ระบบ
                     </center>
                 </div>
@@ -36,6 +47,9 @@
                                 <div class="mb-2">
                                     <button type="submit" class="btn btn-success w-100">เข้าสู่ระบบ</button>
                                 </div>
+                            </div>
+                            <div class="card-footer">
+                                <small>หากเข้าสู่ระบบไม่ได้กรุณาติดต่อแอดมิน</small>
                             </div>
                         </div>
                     </form>

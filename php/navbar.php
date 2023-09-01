@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #35155D;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="color: #FAF3F0;">โรงเรียนวังเหนือวิทยา</a>
+    <a class="navbar-brand" href="#" style="color: #FAF3F0;">
+      <img src="img/wnw.png" width="30px" height="30px">
+      โรงเรียนวังเหนือวิทยา
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,7 +20,12 @@
         </li>
       </ul>
       <div class="d-flex">
-        <a href="login.php" class="btn" style="background-color: #FFC95F;">เข้าสู่ระบบ</a>
+        <?php if(isset($_SESSION['id'])) { ?>
+          <span class="navbar-text me-3" style="color: #FAF3F0;">ชื่อ : <?php echo $_SESSION['title'] . " " . $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></span>
+          <a href="index.php?logout='0'" class="btn btn-danger">ออกจากระบบ</a>
+        <?php } else { ?>
+          <a href="login.php" class="btn" style="background-color: #FFC95F;">เข้าสู่ระบบ</a>
+        <?php } ?>
       </div>
     </div>
   </div>

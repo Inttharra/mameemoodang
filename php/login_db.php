@@ -9,8 +9,9 @@
     $login_result = mysqli_query($connect, $login_query);
 
     while($user = mysqli_fetch_assoc($login_result)) {
-        $_SESSION['first_name'] = $user['firstName'];
-        $_SESSION['last_name'] = $user['lastName'];
+        $_SESSION['title'] = $user['title_name'];
+        $_SESSION['first_name'] = $user['first_name'];
+        $_SESSION['last_name'] = $user['last_name'];
         $_SESSION['id'] = $user['id'];
     }
     
