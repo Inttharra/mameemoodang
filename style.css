@@ -1,10 +1,10 @@
 /* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300&display=swap'); */
 @font-face {
     font-family: 'IBM Plex Sans Thai';
-    src: url(../mameemoodang/font/IBMPlexSansThai-Light.ttf);
+    src: url(font/IBMPlexSansThai-Light.ttf);
   }
 
 body {
-    background-color: #FAF3F0;
+    background-color: #fffbf9;
     font-family: 'IBM Plex Sans Thai', sans-serif;
 }

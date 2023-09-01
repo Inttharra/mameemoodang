@@ -13,7 +13,7 @@
           <a class="nav-link active" aria-current="page" href="index.php" style="color: #FAF3F0;">หน้าหลัก</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="add.php" style="color: #FAF3F0;">เพิ่มข้อมูลนักเรียน</a>
+          <a class="nav-link" href="add_student.php" style="color: #FAF3F0;">เพิ่มข้อมูลนักเรียน</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="add.php" style="color: #FAF3F0;">แก้ไข/ลบข้อมูลนักเรียน</a>
