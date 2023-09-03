@@ -46,6 +46,24 @@
                     </a>
                 </div>
             </div>
+            <div class="row mb-4">
+                <div class="justify-content-center">
+                    <a href="student.php" style="text-decoration: none;">
+                        <div class="d-flex card">
+                            <div class="card-body">
+                                <div class="d-inline-flex align-items-center">
+                                    <div>
+                                        <img src="img/edit_delete.png" width="70px" height="70px">
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        ตรวจสอบ แก้ไข/ลบ รายชื่อนักเรียนที่มีผลการเรียนไม่ผ่านเกณฑ์
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-1 col-sm-1 col-md-3">
 

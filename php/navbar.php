@@ -16,7 +16,7 @@
           <a class="nav-link" href="add_student.php" style="color: #FAF3F0;">เพิ่มข้อมูลนักเรียน</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="add.php" style="color: #FAF3F0;">แก้ไข/ลบข้อมูลนักเรียน</a>
+          <a class="nav-link" href="student.php" style="color: #FAF3F0;">แก้ไข/ลบข้อมูลนักเรียน</a>
         </li>
       </ul>
       <div class="d-flex">

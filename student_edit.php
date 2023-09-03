@@ -9,6 +9,14 @@
         session_destroy();
         echo "<script>alert('ออกจากระบบสำเร็จ'); window.location = 'login.php'</script>";
     }
+
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $student = "SELECT * FROM `log_student` WHERE id = '$id'";
+        $student_result = mysqli_query($connect, $student);
+    } else {
+        header('location: student.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +25,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เพิ่มข้อมูลนักเรียน | ผลการเรียนนักเรียนไม่ผ่านเกณฑ์</title>
+    <title>แก้ไขข้อมูลนักเรียน | ผลการเรียนนักเรียนไม่ผ่านเกณฑ์</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -33,22 +41,24 @@
                     <img src="img/add-1.png" width="90px" height="90px" class="mb-3">
                 </center>
                 <div class="fs-3 text-center">
-                    เพิ่มข้อมูลนักเรียนที่มีผลการเรียนไม่ผ่านเกณฑ์
+                    แก้ไขข้อมูลนักเรียนที่มีผลการเรียนไม่ผ่านเกณฑ์
                 </div>
             </div>
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                        <form action="php/add_student_db.php" method="post">
+                        <form action="php/edit_student_db.php" method="post">
+                        <?php while($log_student = mysqli_fetch_assoc($student_result)) { ?>
+                            <input type="hidden" name="id" value="<?php echo $log_student['id'] ?>">
                             <div class="row mb-2">
                                 <div class="col-12 col-sm-12 mb-2 col-md-2">
                                     <label class="form-label">เลขประจำตัว</label>
-                                    <input type="number" name="id_student" class="form-control" required placeholder="เช่น 12344">
+                                    <input type="number" name="id_student" class="form-control" required placeholder="เช่น 12344" value="<?php echo $log_student['id_student']; ?>">
                                 </div>
                                 <div class="col-12 col-sm-12 mb-2 col-md-2">
                                     <label class="form-label">คำนำหน้าชื่อ</label>
                                     <select name="title_student" required class="form-select">
-                                        <option>คำนำหน้า</option>
+                                        <option value="<?php echo $log_student['title_name'] ?>"><?php echo $log_student['title_name']; ?></option>
                                         <option value="เด็กหญิง">เด็กหญิง</option>
                                         <option value="เด็กชาย">เด็กชาย</option>
                                         <option value="นางสาว">นางสาว</option>
@@ -57,16 +67,16 @@
                                 </div>
                                 <div class="col-12 col-sm-12 mb-2 col-md-3">
                                     <label class="form-label">ชื่อจริง</label>
-                                    <input type="text" name="first_name_student" class="form-control" required placeholder="กรอกชื่อจริงนักเรียน">
+                                    <input type="text" name="first_name_student" class="form-control" required placeholder="กรอกชื่อจริงนักเรียน" value="<?php echo $log_student['first_name']; ?>">
                                 </div>
                                 <div class="col-12 col-sm-12 mb-2 col-md-3">
                                     <label class="form-label">นามสกุล</label>
-                                    <input type="text" name="last_name_student" class="form-control" required placeholder="กรอกนามสกุลของนักเรียน">
+                                    <input type="text" name="last_name_student" class="form-control" required placeholder="กรอกนามสกุลของนักเรียน" value="<?php echo $log_student['last_name']; ?>">
                                 </div>
                                 <div class="col-12 col-sm-12 mb-2 col-md-2">
                                     <label class="form-label">ชั้น/ห้อง</label>
                                     <select name="class" class="form-select" required>
-                                        <option>เลือกชั้น</option>
+                                        <option value="<?php echo $log_student['class']; ?>"><?php echo $log_student['class']; ?></option>
                                         <option value="1/1">1/1</option>
                                         <option value="1/2">1/2</option>
                                         <option value="1/3">1/3</option>
@@ -114,7 +124,7 @@
                                 <div class="col-12 col-sm-12 col-md-3">
                                     <label class="form-label">ปีการศึกษา</label>
                                     <select name="year" required class="form-select">
-                                        <option>ปีการศึกษา</option>
+                                        <option value="<?php echo $log_student['year'] ?>"><?php echo $log_student['year']; ?></option>
                                         <option value="1/2564">1/2564</option>
                                         <option value="2/2564">2/2564</option>
                                         <option value="1/2565">1/2565</option>
@@ -127,7 +137,7 @@
                                 <div class="col-12 col-sm-12 mb-2 col-md-3">
                                     <label class="form-label">กลุ่มสาระการเรียนรู้</label>
                                     <select name="sara" required class="form-select">
-                                        <option>กลุ่มสาระ</option>
+                                        <option value="<?php echo $log_student['sara']; ?>" ><?php echo $log_student['sara']; ?></option>
                                         <option value="คณิตศาสตร์">คณิตศาสตร์</option>
                                         <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option>
                                         <option value="ศิลปะ">ศิลปะ</option>
@@ -141,30 +151,58 @@
                                 </div>
                                 <div class="col-12 col-sm-12 mb-2 col-md-3">
                                     <label class="form-label">รหัสวิชา</label>
-                                    <input type="text" name="id_subject" class="form-control" required placeholder="เช่น ก20827">
+                                    <input type="text" name="id_subject" class="form-control" required placeholder="เช่น ก20827" value="<?php echo $log_student['id_subject']; ?>">
                                 </div>
                                 <div class="col-12 col-sm-12 mb-2 col-md-3">
                                     <label class="form-label">ชื่อวิชา</label>
-                                    <input type="text" name="name_subject" class="form-control" required placeholder="กรอกชื่อวิชา">
+                                    <input type="text" name="name_subject" class="form-control" required placeholder="กรอกชื่อวิชา" value="<?php echo $log_student['name_subject']; ?>">
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-12 col-sm-12 mb-2 col-md-4">
                                     <label class="form-label">จำนวนหน่อยกิต</label>
-                                    <input type="number" name="credit" class="form-control" step="0.5" required>
+                                    <input type="number" name="credit" class="form-control" step="0.5" required value="<?php echo $log_student['credit']; ?>">
                                 </div>
                                 <div class="col-12 col-sm-12 mb-2 col-md-4">
                                     <label class="form-label">คะแนนที่ได้</label>
-                                    <input type="number" name="score_before" class="form-control" step="0.5" required>
+                                    <input type="number" name="score_before" class="form-control" step="0.5" required value="<?php echo $log_student['score_before']; ?>">
                                 </div>
                                 <div class="col-12 col-sm-12 mb-2 col-md-4">
                                     <label class="form-label">ผลการเรียนที่ได้</label>
                                     <select name="grade_before" class="form-select" required>
-                                        <option>ผลการเรียน</option>
+                                        <option value="<?php echo $log_student['grade_before']; ?>"><?php echo $log_student['grade_before']; ?></option>
                                         <option value="0">0</option>
                                         <option value="ร">ร</option>
                                         <option value="มส">มส</option>
                                         <option value="มผ">มผ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12 col-sm-12 col-md-4">
+                                    <label class="form-label">คะแนนหลังแก้ไข</label>
+                                    <input type="number" name="score_after" step="0.25" required class="form-control">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4">
+                                    <label class="form-label">ผลการเรียนหลังแก้ไข</label>
+                                    <select name="grade_after" required class="form-select">
+                                        <option>เลือกผลการเรียน</option>
+                                        <option value="ผ">ผ</option>
+                                        <option value="1">1</option>
+                                        <option value="1.5">1.5</option>
+                                        <option value="2">2</option>
+                                        <option value="2.5">2.5</option>
+                                        <option value="3">3</option>
+                                        <option value="3.5">3.5</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4">
+                                    <label class="form-label">สถานะ</label>
+                                    <select name="status" class="form-select" required>
+                                        <option value="<?php echo $log_student['status']; ?>"><?php echo $log_student['status']; ?></option>
+                                        <option value="แก้ไขแล้ว" selected>แก้ไขแล้ว</option>
+                                        <option value="ลาออก">ลาออก</option>
                                     </select>
                                 </div>
                             </div>
@@ -180,6 +218,7 @@
                                     <button type="submit" class="btn btn-success w-100">เพิ่มข้อมูลนักเรียน</button>
                                 </div>
                             </div>
+                            <?php } ?>
                         </form>
                     </div>
                 </div>
